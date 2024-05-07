@@ -24,14 +24,21 @@ namespace MauiMessagingDemo.Events
             if (EventService != null)
             {
                 // Subscribe to the BluetoothStateChangedEvent
-                EventService.Subscribe<BluetoothStateChangedEvent, bool>(HandleBluetoothStateChanged, ThreadOption.UIThread);
+                EventService.Subscribe<LanguageChangedEvent>(HandleLanguageChanged, ThreadOption.UIThread);
+                //EventService.Subscribe<BluetoothStateChangedEvent, bool>(HandleBluetoothStateChanged, ThreadOption.UIThread);
             }
+        }
+
+        private void HandleLanguageChanged()
+        {
+            throw new NotImplementedException();
         }
 
         public virtual void OnDisappearing()
         {
 
-            EventService.Unsubscribe<BluetoothStateChangedEvent, bool>(HandleBluetoothStateChanged);
+           // EventService.Unsubscribe<BluetoothStateChangedEvent, bool>(HandleBluetoothStateChanged);
+           EventService.Unsubscribe<LanguageChangedEvent>(HandleLanguageChanged);
         }
 
         private void HandleEvents(object sender, BaseEvent eventArgs)
